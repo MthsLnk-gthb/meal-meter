@@ -49,7 +49,7 @@ export default function Header({navigation}) {
        await AsyncStorage.removeItem("altura");
        navigation.navigate("Inicio");
      } catch (error) {
-       console.error("Erro ao remover os dados:", error);
+       alert("Erro ao remover os dados:", error);
      }
    };
 

@@ -1,11 +1,12 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import CadastroRefeicao from "./../Screens/CadastroRefeicoesPage/index";
+import CadastroRefeicao from "../components/CadastroRefeicoesPage/index";
 import TelaListaRefeicoes from "./../Screens/ListaRefeicoesPage/index";
 import SomaNutricional from "./../Screens/SomaNutricionalPage/index";
 import HomePage from "../Screens/HomePage";
 import Inicio from "../Screens/Inicio";
+import { StyleSheet, View } from "react-native";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Inicio">
+
         <Stack.Screen
           options={{ headerShown: false }}
           name="Inicio"
@@ -44,3 +46,9 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+const styles = StyleSheet.create({
+    container: {
+
+  },
+})
