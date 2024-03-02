@@ -8,9 +8,10 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import  AntDesign  from "react-native-vector-icons/AntDesign";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function CadastroRefeicao({ onSalvarRefeicao }) {
+
   const [nomeRefeicao, setNomeRefeicao] = useState("");
   const [caloriasRefeicao, setCaloriasRefeicao] = useState("");
   const [proteinasRefeicao, setProteinasRefeicao] = useState("");
@@ -19,17 +20,27 @@ export default function CadastroRefeicao({ onSalvarRefeicao }) {
 
   const [showFormulario, setShowFormulario] = useState(false);
 
-  const handleSalvarRefeicao = async () => {
+  const handleSalvarRefeicao = () => {
     if (
-      !nomeRefeicao ||
-      !caloriasRefeicao ||
-      !proteinasRefeicao ||
-      !carboidratosRefeicao ||
-      !gordurasRefeicao
+      !nomeRefeicao
+      // !caloriasRefeicao ||
+      // !proteinasRefeicao ||
+      // !carboidratosRefeicao ||
+      // !gordurasRefeicao
     ) {
       Alert.alert("Todos os campos devem ser preenchidos");
       return;
     }
+
+        const novaRefeicao = {
+          nome: nomeRefeicao,
+          calorias: caloriasRefeicao,
+          proteinas: proteinasRefeicao,
+          carboidratos: carboidratosRefeicao,
+          gorduras: gordurasRefeicao,
+        };
+
+    onSalvarRefeicao(novaRefeicao);
 
     setNomeRefeicao("");
     setCaloriasRefeicao("");
@@ -40,12 +51,11 @@ export default function CadastroRefeicao({ onSalvarRefeicao }) {
 
   return (
     <View style={styles.container}>
-      <Text>CadastroRefeicao</Text>
 
       <View style={styles.camposInput}>
         <TouchableOpacity onPress={() => setShowFormulario(!showFormulario)}>
           <View style={styles.addItemShowInput}>
-            <Text style={styles.labelAddItem}>Adicionar item</Text>
+            <Text style={styles.labelAddItem}>Adicionar Refeição</Text>
             <AntDesign
               name={showFormulario ? "upcircleo" : "downcircleo"}
               size={22}
@@ -92,7 +102,12 @@ export default function CadastroRefeicao({ onSalvarRefeicao }) {
             keyboardType="numeric"
           />
 
-          <Button title="Salvar Refeição" onPress={handleSalvarRefeicao} />
+          <TouchableOpacity
+            style={styles.btnAddRefecicao}
+            onPress={handleSalvarRefeicao}
+          >
+            <Text style={styles.conteudoBtn}> Salvar Refeição </Text>
+          </TouchableOpacity>
         </>
       )}
     </View>
@@ -110,4 +125,17 @@ const styles = StyleSheet.create({
     borderBottomColor: "#000",
     borderBottomWidth: 1,
   },
+  btnAddRefecicao: {
+    width: 200,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#780000",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
+  },
+  conteudoBtn:{
+    fontSize: 18,
+    color: "#fff"
+  }
 });
